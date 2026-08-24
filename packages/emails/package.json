@@ -1,0 +1,21 @@
+{
+  "name": "@blueprint/emails",
+  "version": "1.0.0",
+  "description": "Package to manage emails",
+  "type": "module",
+  "scripts": {
+    "dev": "email dev --dir ./src/templates -p 3001",
+    "export": "email export --pretty --dir ./src/templates --outDir ../../apps/server/templates/emails"
+  },
+  "dependencies": {
+    "@react-email/components": "^1.0.12",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-email": "^6.9.2"
+  },
+  "devDependencies": {
+    "@react-email/ui": "6.9.2",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5"
+  }
+}
