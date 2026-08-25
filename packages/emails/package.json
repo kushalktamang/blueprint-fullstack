@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "email dev --dir ./src/templates -p 3001",
-    "export": "email export --pretty --dir ./src/templates --outDir ../../apps/server/templates/emails"
+    "export": "email export --pretty --dir ./src/templates --outDir ../../apps/server/templates/emails",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt src package.json",
+    "format:check": "oxfmt --check src package.json",
+    "format:fix": "oxfmt src package.json"
   },
   "dependencies": {
     "@react-email/components": "^1.0.12",
@@ -14,8 +19,11 @@
     "react-email": "^6.9.2"
   },
   "devDependencies": {
+    "@blueprint/ts-config": "workspace:*",
     "@react-email/ui": "6.9.2",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5"
+    "@types/react-dom": "^19.2.5",
+    "oxfmt": "^0.37.0",
+    "oxlint": "^1.80.0"
   }
 }

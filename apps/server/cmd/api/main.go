@@ -21,7 +21,7 @@ import (
 const DefaultContextTimeout = 30
 
 func main() {
-	cfg:= config.MustLoad()
+	cfg := config.MustLoad()
 
 	// Initialize New Relic logger service
 	loggerService := logger.NewLoggerService(cfg.Observability)

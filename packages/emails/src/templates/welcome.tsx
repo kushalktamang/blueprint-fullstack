@@ -6,7 +6,6 @@ import {
   Heading,
   Hr,
   Html,
-  Img,
   Link,
   Preview,
   Section,
@@ -18,14 +17,12 @@ interface WelcomeEmailProps {
   userFirstName: string;
 }
 
-export const WelcomeEmail = ({
-  userFirstName = "{{.UserFirstName}}",
-}: WelcomeEmailProps) => {
+export const WelcomeEmail = ({ userFirstName = "{{.UserFirstName}}" }: WelcomeEmailProps) => {
   return (
     <Html>
       <Tailwind>
-      <Head />
-      <Preview>Welcome to Blueprint Fullstack</Preview>
+        <Head />
+        <Preview>Welcome to Blueprint Fullstack</Preview>
         <Body className="bg-gray-100 font-sans">
           <Container className="bg-white p-8 rounded-lg shadow-sm my-10 mx-auto max-w-150">
             <Heading className="text-2xl font-bold text-gray-800 mt-4">
@@ -33,12 +30,8 @@ export const WelcomeEmail = ({
             </Heading>
 
             <Section>
-              <Text className="text-gray-700 text-base">
-                Hi {userFirstName},
-              </Text>
-              <Text className="text-gray-700 text-base">
-                Thank you for joining!
-              </Text>
+              <Text className="text-gray-700 text-base">Hi {userFirstName},</Text>
+              <Text className="text-gray-700 text-base">Thank you for joining!</Text>
             </Section>
 
             <Section className="my-8 text-center">
@@ -66,9 +59,7 @@ export const WelcomeEmail = ({
               <Text className="text-gray-500 text-xs">
                 © {new Date().getFullYear()} Moks. All rights reserved.
               </Text>
-              <Text className="text-gray-500 text-xs">
-                9 Nayabazar Street, Pokhara, Nepal
-              </Text>
+              <Text className="text-gray-500 text-xs">9 Nayabazar Street, Pokhara, Nepal</Text>
             </Section>
           </Container>
         </Body>

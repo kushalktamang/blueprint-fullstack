@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+
+  "compilerOptions": {
+    // Runtime & module system
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "es2022",
+    "lib": ["es2022"],
+    "moduleDetection": "force",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    // JavaScript support
+    "allowJs": true,
+    "checkJs": true,
+
+    // Required for modern tooling and isolated transpilation
+    "isolatedModules": true,
+
+    // Preserve import/export syntax exactly as written
+    "verbatimModuleSyntax": true,
+
+    // Strict type safety
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    // Catch common mistakes
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+
+    // Build behavior
+    // "incremental": false,
+    "composite": true,
+    "noEmitOnError": true,
+
+    // Import safety
+    "noUncheckedSideEffectImports": true,
+
+    // Enable full error messages when debugging config issues
+    "noErrorTruncation": false,
+
+    // TypeScript-only syntax that can be erased safely
+    "erasableSyntaxOnly": true,
+
+    // Prevent path casing issues across operating systems
+    "forceConsistentCasingInFileNames": true,
+
+    // Output files
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Faster builds by skipping .d.ts checking
+    "skipLibCheck": true,
+
+    // for usng node 
+    // "types": ["node"],
+
+    // for go-ts monorepo
+    "useUnknownInCatchVariables": true,
+    "noImplicitReturns": true
+  }
+}

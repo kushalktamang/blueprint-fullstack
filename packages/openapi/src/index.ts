@@ -10,16 +10,12 @@ type SecurityRequirementObject = {
   [key: string]: string[];
 };
 
-export type OperationMapper = NonNullable<
-  Parameters<typeof generateOpenApi>[2]
->["operationMapper"];
+export type OperationMapper = NonNullable<Parameters<typeof generateOpenApi>[2]>["operationMapper"];
 
 const hasSecurity = (
-  metadata: unknown
+  metadata: unknown,
 ): metadata is { openApiSecurity: SecurityRequirementObject[] } => {
-  return (
-    !!metadata && typeof metadata === "object" && "openApiSecurity" in metadata
-  );
+  return !!metadata && typeof metadata === "object" && "openApiSecurity" in metadata;
 };
 
 const operationMapper: OperationMapper = (operation, appRoute) => ({
@@ -51,7 +47,7 @@ export const OpenAPI = Object.assign(
     {
       operationMapper,
       setOperationId: true,
-    }
+    },
   ),
   {
     components: {
@@ -68,5 +64,5 @@ export const OpenAPI = Object.assign(
         },
       },
     },
-  }
+  },
 );

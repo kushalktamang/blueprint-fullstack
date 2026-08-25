@@ -51,5 +51,5 @@ tasks:
     - go fmt ./...
     - echo 'Tidying module dependencies...'
     - go mod tidy
-    - echo 'Verifying dependencies...'
-    - go mod 
+    # - echo 'Verifying dependencies...'
+    # - go mod 

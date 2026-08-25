@@ -3,23 +3,31 @@
   "version": "1.0.0",
   "description": "Package which exports all Boilerplate zod schemas and types",
   "type": "module",
-  "scripts": {
-    "build": "tsc && tsc-alias",
-    "dev": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
-    "clean": "rimraf dist tsconfig.tsbuildinfo .turbo node_modules"
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     }
   },
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "dev": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt src package.json",
+    "format:check": "oxfmt --check src package.json",
+    "format:fix": "oxfmt src package.json",
+    "clean": "rimraf dist tsconfig.tsbuildinfo .turbo node_modules"
+  },
   "dependencies": {
     "@anatine/zod-openapi": "^2.2.7",
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@blueprint/ts-config": "workspace:*",
     "concurrently": "^9.1.2",
+    "oxfmt": "^0.37.0",
+    "oxlint": "^1.80.0",
     "tsc-alias": "^1.8.12",
     "typescript": "^5.8.2"
   }
