@@ -6,12 +6,14 @@ const ZHealthCheck = z.object({
   error: z.string().optional(),
 });
 
-export const ZHealthResponse = z.object({
+const ZHealthResponse = z.object({
   status: z.enum(["healthy", "unhealthy"]),
-  timestamp: z.string().datetime(),
+  timestamp: z.iso.datetime(),
   environment: z.string(),
   checks: z.object({
     database: ZHealthCheck,
     redis: ZHealthCheck.optional(),
   }),
 });
+
+export default ZHealthResponse;

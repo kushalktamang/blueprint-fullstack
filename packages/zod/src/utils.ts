@@ -1,16 +1,16 @@
 import { z } from "zod";
 
-export type PaginatedResponse<T> = {
-  data: T[];
+interface PaginatedResponse<ItemType> {
+  data: ItemType[];
   total: number;
   page: number;
   limit: number;
   totalPages: number;
-};
+}
 
-export const schemaWithPagination = <T>(
-  schema: z.ZodSchema<T>,
-): z.ZodSchema<PaginatedResponse<T>> =>
+const schemaWithPagination = <ItemType>(
+  schema: z.ZodType<ItemType>,
+): z.ZodType<PaginatedResponse<ItemType>> =>
   z.object({
     data: z.array(schema),
     total: z.number(),
@@ -18,3 +18,5 @@ export const schemaWithPagination = <T>(
     limit: z.number(),
     totalPages: z.number(),
   });
+
+export default schemaWithPagination;

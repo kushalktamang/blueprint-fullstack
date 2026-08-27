@@ -2,8 +2,7 @@ package model
 
 import (
 	"time"
-
-	"github.com/google/uuid"
+	"uuid"
 )
 
 type BaseWithId struct {
@@ -24,7 +23,7 @@ type Base struct {
 	BaseWithUpdatedAt
 }
 
-type PaginatedResponse[T interface{}] struct {
+type PaginatedResponse[T any] struct {
 	Data       []T `json:"data"`
 	Page       int `json:"page"`
 	Limit      int `json:"limit"`

@@ -1,8 +1,10 @@
+import healthContract from "./health.js";
 import { initContract } from "@ts-rest/core";
-import { healthContract } from "./health.js";
 
-const c = initContract();
+const contract = initContract();
 
-export const apiContract = c.router({
+const apiContract = contract.router({
   Health: healthContract,
 });
+
+export default apiContract;

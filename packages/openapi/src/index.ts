@@ -1,46 +1,54 @@
+import apiContract from "./contracts/index.js";
 import { extendZodWithOpenApi } from "@anatine/zod-openapi";
+import { generateOpenApi } from "@ts-rest/open-api";
 import { z } from "zod";
 
 extendZodWithOpenApi(z);
-import { generateOpenApi } from "@ts-rest/open-api";
 
-import { apiContract } from "./contracts/index.js";
+const Generate_Open_Api_Options_Index = 2;
+type GenerateOpenApiOptionsIndex = typeof Generate_Open_Api_Options_Index;
 
-type SecurityRequirementObject = {
-  [key: string]: string[];
-};
-
-export type OperationMapper = NonNullable<Parameters<typeof generateOpenApi>[2]>["operationMapper"];
+type SecurityRequirementObject = Record<string, string[]>;
+type OperationMapper = NonNullable<
+  Parameters<typeof generateOpenApi>[GenerateOpenApiOptionsIndex]
+>["operationMapper"];
 
 const hasSecurity = (
   metadata: unknown,
-): metadata is { openApiSecurity: SecurityRequirementObject[] } => {
-  return !!metadata && typeof metadata === "object" && "openApiSecurity" in metadata;
+): metadata is { openApiSecurity: SecurityRequirementObject[] } =>
+  metadata !== null &&
+  metadata !== undefined &&
+  typeof metadata === "object" &&
+  "openApiSecurity" in metadata;
+
+const buildSecurityExtension = (
+  metadata: unknown,
+): Partial<{ security: SecurityRequirementObject[] }> => {
+  if (hasSecurity(metadata)) {
+    return { security: metadata.openApiSecurity };
+  }
+  return {};
 };
 
 const operationMapper: OperationMapper = (operation, appRoute) => ({
   ...operation,
-  ...(hasSecurity(appRoute.metadata)
-    ? {
-        security: appRoute.metadata.openApiSecurity,
-      }
-    : {}),
+  ...buildSecurityExtension(appRoute.metadata),
 });
 
-export const OpenAPI = Object.assign(
+const OpenAPI = Object.assign(
   generateOpenApi(
     apiContract,
     {
-      openapi: "3.0.2",
       info: {
+        description: "Blueprint REST API - Documentation",
+        title: "Blueprint REST API - Documentation",
         version: "1.0.0",
-        title: "Boilerplate REST API - Documentation",
-        description: "Boilerplate REST API - Documentation",
       },
+      openapi: "3.0.2",
       servers: [
         {
-          url: "http://localhost:8080",
           description: "Local Server",
+          url: "http://localhost:8080",
         },
       ],
     },
@@ -53,16 +61,18 @@ export const OpenAPI = Object.assign(
     components: {
       securitySchemes: {
         bearerAuth: {
-          type: "http",
-          scheme: "bearer",
           bearerFormat: "JWT",
+          scheme: "bearer",
+          type: "http",
         },
         "x-service-token": {
-          type: "apiKey",
-          name: "x-service-token",
           in: "header",
+          name: "x-service-token",
+          type: "apiKey",
         },
       },
     },
   },
 );
+
+export default OpenAPI;

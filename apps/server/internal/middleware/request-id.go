@@ -1,7 +1,9 @@
 package middleware
 
 import (
-	"github.com/google/uuid"
+
+	"uuid"
+
 	"github.com/labstack/echo/v4"
 )
 

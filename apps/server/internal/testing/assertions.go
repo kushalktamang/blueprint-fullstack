@@ -6,14 +6,14 @@ import (
 	"strings"
 	"testing"
 	"time"
+	"uuid"
 
-	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 // AssertTimestampsValid checks that created_at and updated_at fields are set
-func AssertTimestampsValid(t *testing.T, obj interface{}) {
+func AssertTimestampsValid(t *testing.T, obj any) {
 	t.Helper()
 
 	val := reflect.ValueOf(obj)

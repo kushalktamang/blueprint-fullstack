@@ -1,12 +1,12 @@
 import { match } from "ts-pattern";
 
-export const getSecurityMetadata = ({
+const getSecurityMetadata = ({
   security = true,
   securityType = "bearer",
-}: {
+}: Readonly<{
   security?: boolean;
   securityType?: "bearer" | "service";
-} = {}) => {
+}> = {}) => {
   const openApiSecurity = match(securityType)
     .with("bearer", () => [
       {
@@ -24,3 +24,5 @@ export const getSecurityMetadata = ({
     ...(security && { openApiSecurity }),
   };
 };
+
+export default getSecurityMetadata;

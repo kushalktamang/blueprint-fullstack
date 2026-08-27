@@ -1,18 +1,18 @@
+import ZHealthResponse from "../../../zod/dist/health.js";
 import { initContract } from "@ts-rest/core";
-// import { z } from "zod";
-import { ZHealthResponse } from "@blueprint/zod";
-// import { getSecurityMetadata } from "@/utils.js";
 
-const c = initContract();
+const contract = initContract();
 
-export const healthContract = c.router({
+const healthContract = contract.router({
   getHealth: {
-    summary: "Get health",
-    path: "/status",
-    method: "GET",
     description: "Get health status",
+    method: "GET",
+    path: "/status",
     responses: {
       200: ZHealthResponse,
     },
+    summary: "Get health",
   },
 });
+
+export default healthContract;
